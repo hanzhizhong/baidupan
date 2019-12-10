@@ -24,7 +24,7 @@ function createWindow() {
         icon:'@/renderer/assets/images/logo.ico',
         show:false,
         frame:false,
-        transparent:true,
+        //transparent:true,
         webPreferences:{nodeIntegration:true}
     })
 

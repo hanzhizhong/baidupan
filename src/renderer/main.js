@@ -4,6 +4,8 @@ import App from './App'
 
 import router from './router'
 
+import './assets/css/font-awesome.min.css'
+import './assets/css/iconfont.css'
 import './assets/css/reset.css'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))

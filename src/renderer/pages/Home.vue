@@ -1,21 +1,33 @@
 <template>
     <div class="home">
-        <v-header></v-header>
-        <h3>this is home page</h3>
+        <v-aside></v-aside>
+
+        <div class="container">
+            <router-view></router-view>
+        </div>
+        <v-status></v-status>
     </div>
 </template>
 
 <script>
-    import Header from '@/components/header/Header'
-
+    import Aside from '../components/aside/Aside'
+    import Status from '../components/status/Status'
     export default {
         name: "Home",
         components:{
-            'v-header':Header
+            'v-aside':Aside,
+            'v-status':Status,
         }
     }
 </script>
 
 <style scoped>
-
+    .container{
+        position:absolute;
+        background-color:red;
+        top:75px;
+        right:0;
+        left:165px;
+        bottom:0;
+    }
 </style>
