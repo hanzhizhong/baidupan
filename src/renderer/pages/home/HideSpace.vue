@@ -6,7 +6,10 @@
 
 <script>
     export default {
-        name:'hideSpace'
+        name:'hideSpace',
+        mounted(){
+            console.log(this.$route)
+        }
     }
 </script>
 

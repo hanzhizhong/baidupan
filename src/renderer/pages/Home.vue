@@ -24,7 +24,6 @@
 <style scoped>
     .container{
         position:absolute;
-        background-color:red;
         top:75px;
         right:0;
         left:165px;

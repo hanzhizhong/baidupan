@@ -6,7 +6,10 @@
 
 <script>
     export default {
-        name:'recent'
+        name:'recent',
+        mounted(){
+            console.log(this.$route)
+        }
     }
 </script>
 

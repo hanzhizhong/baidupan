@@ -6,7 +6,10 @@
 
 <script>
     export default {
-        name:'share'
+        name:'share',
+        mounted(){
+            console.log(this.$route)
+        }
     }
 </script>
 

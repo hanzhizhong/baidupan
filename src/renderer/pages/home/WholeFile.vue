@@ -6,7 +6,10 @@
 
 <script>
     export default {
-        name: "WholeFile"
+        name: "WholeFile",
+        mounted(){
+            console.log(this.$route)
+        }
     }
 </script>
 

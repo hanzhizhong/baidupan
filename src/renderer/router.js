@@ -18,10 +18,12 @@ const routes=[
     {path:'/',redirect:{name:'home'}},
     {path:'/login',name:'login',component:Login},
     {
-        path:'/home',name:'home',component:Home,
+        path:'/home',name:'home',component:Home,redirect:'whole',
         children:[
             {path:'recent',name:'recent',component:Recent},
-            {path:'',name:'whole',component:WholeFile},//默认的嵌套路由的首页方法 path设为空
+            {
+                path:'whole',name:'whole',component:WholeFile
+            },//默认的嵌套路由的首页方法 path设为空
             {path:'hideSpace',name:'hide-space',component:HideSpace},
             {path:'share',name:'share',component:Share}
         ]
