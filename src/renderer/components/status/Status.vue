@@ -1,6 +1,6 @@
 <template>
     <div class="status">
-        <h3>状态栏</h3>
+        <div>状态栏</div>
     </div>
 </template>
 

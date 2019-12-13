@@ -24,5 +24,6 @@
         font-size: 12px;
         color: @m_font_color;
         user-select: none;
+        cursor:default;
     }
 </style>

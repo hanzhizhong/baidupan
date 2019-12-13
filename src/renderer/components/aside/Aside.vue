@@ -16,16 +16,16 @@
         data() {
             return {
                 navList: [
-                    {title: '最近访问', path: 'recent', icon: 'fa fa-clock-o', isActive: false},
-                    {title: '全部文件', path: 'whole', icon: 'fa fa-file-text-o', isActive: true},
-                    {title: '图片', path: 'whole?page=pic', query: 'pic', icon: '', isActive: false},
-                    {title: '视频', path: 'whole?page=video', query: 'video', icon: '', isActive: false},
-                    {title: '文档', path: 'whole?page=doc', query: 'doc', icon: '', isActive: false},
-                    {title: '音乐', path: 'whole?page=mp3', query: 'mp3', icon: '', isActive: false},
-                    {title: '种子', path: 'whole?page=torrent', query: 'torrent', icon: '', isActive: false},
-                    {title: '其他', path: 'whole?page=others', query: 'others', icon: '', isActive: false},
-                    {title: '隐藏空间', path: 'hideSpace', icon: 'fa fa-lock', isActive: false},
-                    {title: '我的分享', path: 'share', icon: 'fa fa-share-alt', isActive: false},
+                    {title: '最近访问', name: 'recent', icon: 'fa fa-clock-o', isActive: false},
+                    {title: '全部文件', name: 'whole',param:'entire', icon: 'fa fa-file-text-o', isActive: true},
+                    {title: '图片', name: 'whole',param:'pic', icon: '', isActive: false},
+                    {title: '视频', name: 'whole', param:'video',icon: '', isActive: false},
+                    {title: '文档', name: 'whole',param:'doc', icon: '', isActive: false},
+                    {title: '音乐', name: 'whole',param:'mps', icon: '', isActive: false},
+                    {title: '种子', name: 'whole', param:'torrent', icon: '', isActive: false},
+                    {title: '其他', name: 'whole', param:'others', icon: '', isActive: false},
+                    {title: '隐藏空间', name: 'hide-space', icon: 'fa fa-lock', isActive: false},
+                    {title: '我的分享', name: 'share', icon: 'fa fa-share-alt', isActive: false},
                 ]
             }
         },
@@ -36,9 +36,16 @@
                 })
                 obj.isActive = true;
                 console.log('aa')
-                this.$router.push({path:obj.path}).catch(err => {
-                    err
-                })
+                if(obj.param){
+                    this.$router.push({name:obj.name,params:{aid:obj.param}}).catch(err => {
+                        err
+                    })
+                }else{
+                    this.$router.push({name:obj.name}).catch(err => {
+                        err
+                    })
+                }
+
             }
         }
     }

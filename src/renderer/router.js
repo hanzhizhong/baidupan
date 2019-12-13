@@ -13,16 +13,17 @@ import HideSpace from './pages/home/HideSpace'
 import Share from './pages/home/Share'
 
 
-
 const routes=[
     {path:'/',redirect:{name:'home'}},
     {path:'/login',name:'login',component:Login},
     {
-        path:'/home',name:'home',component:Home,redirect:'whole',
+        //redirect的方法也可以指定默认的路由首页
+        path:'/home',name:'home',component:Home,redirect:{name:'whole',params:{aid:'entire'}},
         children:[
             {path:'recent',name:'recent',component:Recent},
             {
-                path:'whole',name:'whole',component:WholeFile
+                path:'whole/:aid',name:'whole',component:WholeFile,
+
             },//默认的嵌套路由的首页方法 path设为空
             {path:'hideSpace',name:'hide-space',component:HideSpace},
             {path:'share',name:'share',component:Share}
