@@ -21,7 +21,7 @@
                     {title: '图片', name: 'whole',param:'pic', icon: '', isActive: false},
                     {title: '视频', name: 'whole', param:'video',icon: '', isActive: false},
                     {title: '文档', name: 'whole',param:'doc', icon: '', isActive: false},
-                    {title: '音乐', name: 'whole',param:'mps', icon: '', isActive: false},
+                    {title: '音乐', name: 'whole',param:'mp3', icon: '', isActive: false},
                     {title: '种子', name: 'whole', param:'torrent', icon: '', isActive: false},
                     {title: '其他', name: 'whole', param:'others', icon: '', isActive: false},
                     {title: '隐藏空间', name: 'hide-space', icon: 'fa fa-lock', isActive: false},
@@ -35,13 +35,12 @@
                     item.isActive = false;
                 })
                 obj.isActive = true;
-                console.log('aa')
                 if(obj.param){
-                    this.$router.push({name:obj.name,params:{aid:obj.param}}).catch(err => {
+                    this.$router.push({name:obj.name,params:{aid:obj.param,title:obj.title}}).catch(err => {
                         err
                     })
                 }else{
-                    this.$router.push({name:obj.name}).catch(err => {
+                    this.$router.push({name:obj.name,title:obj.title}).catch(err => {
                         err
                     })
                 }

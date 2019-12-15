@@ -19,7 +19,7 @@
                 <span><i class="fa fa-refresh"></i></span>
             </div>
             <div class="menu-current-page">
-                {{currentPage}}
+                <span v-for="(item,index) in levelList" :key="index">{{item}}</span>
             </div>
             <div class="menu-search">
                 <input type="text" placeholder="查找一下">
@@ -41,6 +41,19 @@
             },
             currentPage:{
                 type:String
+            }
+        },
+        data(){
+            return{
+                //levelList:[]
+            }
+        },
+        computed:{
+            levelList(){
+                let ret=this.currentPage;
+                let arr=ret.split('>')
+
+                return arr
             }
         },
         methods:{
@@ -116,18 +129,45 @@
         height:40px;
         background-color:@main_bg;
         justify-content: flex-start;
-
+        border-bottom:1px solid lighten(@border_color,5%);
         align-items:center;
+
         .menu-history{
             flex:1;
             max-width:100px;
+            border-right:1px solid @border_color;
+            margin-right:10px;
+            span{
+                font-size:14px;
+                margin:0 10px;
+                &:hover{
+                    color:@active_color;
+                }
+            }
         }
         .menu-current-page{
             flex:2;
+            span{
+                &:hover{
+                    color:@active_color;
+                }
+            }
         }
         .menu-search{
             flex:1;
             max-width:200px;
+            padding-left:10px;
+            border-left:1px solid @border_color;
+            input{
+                outline:none;
+                border:none;
+            }
+            i{
+                font-size:14px;
+                &:hover{
+                    color: @active_color;
+                }
+            }
         }
     }
 </style>

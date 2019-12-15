@@ -4,7 +4,7 @@
             <span slot="sort" title="排序"><i class="fa fa-sort-alpha-asc"></i></span>
             <span @click="showCaseStyle" slot="showcase" :title="showcaseTitle"><i :class="showcase"></i></span>
         </v-submenu>
-        <div>{{$route.params}}</div>
+        <div>{{$route.params.aid}}</div>
     </div>
 </template>
 
@@ -31,7 +31,12 @@
                 showcase:"icon iconfont iconsuolvetuxianshi",
                 showcaseTitle:'切换到缩略图显示',
                 isThumbnail:false,
-                currentPage:'我的网盘'
+            }
+        },
+        computed:{
+            currentPage(){
+                let title=this.$route.params.title||''
+                return title!="全部文件"?'我的网盘 >'+title:'我的网盘'
             }
         },
         methods:{
@@ -44,10 +49,10 @@
                     this.showcase="icon iconfont iconsuolvetuxianshi"
                     this.showcaseTitle='切换到缩略图显示'
                 }
-            }
+            },
         },
         mounted(){
-            console.log(this.$route.params)
+
         }
     }
 </script>
