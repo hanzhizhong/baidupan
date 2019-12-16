@@ -21,5 +21,8 @@
     height:35px;
     box-sizing:border-box;
     border-top:1px solid @border_color;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 </style>

@@ -19,7 +19,7 @@
                 <span><i class="fa fa-refresh"></i></span>
             </div>
             <div class="menu-current-page">
-                <span v-for="(item,index) in levelList" :key="index">{{item}}</span>
+                <span @click="go2ThisPageByAid(item.aid)" v-for="(item,index) in levelList" :key="index">{{item.title}}</span>
             </div>
             <div class="menu-search">
                 <input type="text" placeholder="查找一下">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+    import VueEvent from '../../utils/vueEvent'
     export default {
         name: "SubTitleMenu",
         props:{
@@ -40,7 +41,7 @@
                 type:Boolean
             },
             currentPage:{
-                type:String
+                type:Object
             }
         },
         data(){
@@ -50,14 +51,34 @@
         },
         computed:{
             levelList(){
+                let arr;
                 let ret=this.currentPage;
-                let arr=ret.split('>')
+                if(ret.aid&&ret.aid!="entire"){
+                    arr=[]
+                    arr.push({aid:'entire',title:'我的网盘 >'})
+                    arr.push(ret)
+                }else if(ret.aid&&ret.aid=="entire"){
+                    arr=[]
+                    arr.push({aid:'entire',title:'我的网盘 >'})
+                }else{
+                    arr=[]
+                    arr.push({title:`${ret.title} >`})
+                }
 
                 return arr
             }
         },
         methods:{
-
+            go2ThisPageByAid(aid){
+                if(aid){
+                    console.log('aa')
+                    VueEvent.$emit('toChangeActive',{aid:aid,name:this.$route.name});
+                    this.$router.push({name:this.$route.name,params:{aid:aid}}).catch(err=>{})
+                }else{
+                    VueEvent.$emit('toChangeActive',{name:this.$route.name});
+                    this.$router.push({name:this.$route.name}).catch(err=>{})
+                }
+            }
         },
         mounted(){
             this.menu.forEach((item,index)=>{

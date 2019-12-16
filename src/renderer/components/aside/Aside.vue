@@ -11,6 +11,7 @@
 </template>
 
 <script>
+    import VueEvent from '../../utils/vueEvent'
     export default {
         name: 'aside-part',
         data() {
@@ -36,16 +37,39 @@
                 })
                 obj.isActive = true;
                 if(obj.param){
-                    this.$router.push({name:obj.name,params:{aid:obj.param,title:obj.title}}).catch(err => {
+                    this.$router.push({name:obj.name,params:{aid:obj.param,title:obj.title,}}).catch(err => {
                         err
                     })
                 }else{
-                    this.$router.push({name:obj.name,title:obj.title}).catch(err => {
+                    this.$router.push({name:obj.name,params:{title:obj.title}}).catch(err => {
                         err
                     })
                 }
 
             }
+        },
+        mounted(){
+            VueEvent.$on('toChangeActive',(val)=>{
+                console.log('val',val)
+                this.navList.forEach((item, index,array) => {
+                    array.forEach((ite,inde)=>{
+                        item.isActive=false;
+                    });
+                    if(val.aid){
+                        console.log('bbb')
+                        if(item.param==val.aid){
+                            console.log(item)
+                            item.isActive = true;
+                        }
+                    }else{
+                        if(item.name==val.name){
+                            item.isActive=true
+                        }
+                    }
+
+                })
+
+            })
         }
     }
 </script>

@@ -35,8 +35,7 @@
         },
         computed:{
             currentPage(){
-                let title=this.$route.params.title||''
-                return title!="全部文件"?'我的网盘 >'+title:'我的网盘'
+                return this.$route.params
             }
         },
         methods:{
