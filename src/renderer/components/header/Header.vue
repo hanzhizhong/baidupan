@@ -47,7 +47,7 @@
                     {name:'我的网盘',icon:'',path:'/home',isActive:true},
                     {name:'传输列表',icon:'',path:'/transfer',isActive:false},
                     {name:'好友分享',icon:'',path:'/friends',isActive:false},
-                    {name:'功能宝箱',icon:'',path:'/treasure',isActive:false},
+                    {name:'功能宝箱',icon:'',path:'/magicBox',isActive:false},
                 ],
                 username:'hello someone',
                 winCur:this.$electron.remote.getCurrentWindow(),
@@ -61,6 +61,7 @@
                     item.isActive=false;
                 });
                 obj.isActive=true;
+                this.$router.replace({path:obj.path}).catch(err=>{})
             },
             winScreenMinimized(){
                 this.winCur.minimize()

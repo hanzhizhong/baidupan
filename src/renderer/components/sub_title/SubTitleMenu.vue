@@ -71,7 +71,6 @@
         methods:{
             go2ThisPageByAid(aid){
                 if(aid){
-                    console.log('aa')
                     VueEvent.$emit('toChangeActive',{aid:aid,name:this.$route.name});
                     this.$router.push({name:this.$route.name,params:{aid:aid}}).catch(err=>{})
                 }else{
