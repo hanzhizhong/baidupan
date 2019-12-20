@@ -44,7 +44,23 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/logo.ico"
+      "icon": "build/icons/logo.ico",
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./build/icons/logo.ico",
+      "uninstallerIcon": "./build/icons/uninstall.ico",
+      "installerHeaderIcon": "./bulid/icons/256x256.png",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "hello ***"
     },
     "linux": {
       "icon": "build/icons"
