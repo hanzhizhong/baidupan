@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-header></v-header>
+        <v-header :isLogin="isLogin"></v-header>
         <router-view></router-view>
     </div>
 </template>
@@ -11,6 +11,24 @@
         name: 'app',
         components:{
             'v-header':Header,
+        },
+        data(){
+            return {
+                isLogin:true
+            }
+        },
+        methods:{
+            loginOrHome(){
+                let pathName=this.$route.name;
+                if(pathName=='login'){
+                    this.isLogin=true
+                }else{
+                    this.isLogin=false
+                }
+            }
+        },
+        mounted(){
+            this.loginOrHome()
         }
     }
 </script>
@@ -18,7 +36,6 @@
 <style lang="less">
     /* CSS */
     @import 'assets/css/base.less';
-
     html {
         font-family: "Microsoft YaHei";
         font-size: 12px;

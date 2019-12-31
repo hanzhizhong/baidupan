@@ -1,16 +1,17 @@
 <template>
-    <div class="header clearfix" style="-webkit-app-region: drag;">
-        <div class="logo">
+    <div class="header clearfix" style="-webkit-app-region: drag;" :class="isLogin?'header-bottom':''">
+        <div class="logo" :class="isLogin?'login-pic':''">
             <img src="../../assets/images/logo.png" alt="logo">
             <h3>百度网盘</h3>
         </div>
-        <div class="nav" style="-webkit-app-region: no-drag;">
+
+        <div v-if="!isLogin" class="nav" style="-webkit-app-region: no-drag;">
             <ul>
                 <li v-for="(item,index) in menuList" :key="index" @click="changeCurrentPage(item)" :class="{'active':item.isActive}">{{item.name}}</li>
             </ul>
         </div>
-        <div class="others clearfix" style="-webkit-app-region: no-drag;">
-            <div class="user-info">
+        <div  class="others clearfix" style="-webkit-app-region: no-drag;">
+            <div v-if="!isLogin"class="user-info">
                 <div class="user-avatar">
                     <i class="fa fa-user"></i>
                 </div>
@@ -19,17 +20,17 @@
 
                 </div>
             </div>
-            <div class="user-vip">
+            <div v-if="!isLogin" class="user-vip">
                 会员中心
             </div>
             <div class="win-click">
-                <div class="win-setting">
+                <div v-if="!isLogin" class="win-setting">
                     <span title="消息提示"><i class="fa-fw fa fa-bell-o"></i></span>
                     <span title="设置"><i class="fa-fw fa fa-cog"></i></span>
                 </div>
                 <div class="win-screen">
                     <span title="最小化" @click="winScreenMinimized"><i class="fa-fw fa fa-minus"></i></span>
-                    <span :title="maxTitle" @click="winScreenMaximized"><i :class="maxUnMaxClass"></i></span>
+                    <span v-if="!isLogin" :title="maxTitle" @click="winScreenMaximized"><i :class="maxUnMaxClass"></i></span>
                     <span title="关闭" @click="winScreenClosed"><i class="fa-fw fa fa-close"></i></span>
                 </div>
             </div>
@@ -41,6 +42,9 @@
 
     export default {
         name: "Header",
+        props:{
+            isLogin:Boolean,
+        },
         data(){
             return {
                 menuList:[
@@ -97,6 +101,9 @@
         border-bottom:1px solid @border_color;
         cursor:default;
     }
+    .header-bottom{
+        border-bottom:none;
+    }
     .logo{
         float:left;
         width:165px;
@@ -116,6 +123,9 @@
             display:inline-block;
         }
 
+    }
+    .login-pic{
+        margin-left:247px;
     }
     .nav{
         float:left;

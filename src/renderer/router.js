@@ -38,7 +38,9 @@ const routes=[
             },//默认的嵌套路由的首页方法 path设为空
             {path:'hideSpace',name:'hide-space',component:HideSpace},
             {path:'share',name:'share',component:Share}
-        ]
+        ],meta:{
+            requiresAuth:true
+        }
     },
     {
         path:'/transfer',name:'transfer',component:Index,redirect:{name:'finished'},
@@ -63,5 +65,24 @@ const routes=[
 const router=new VueRouter({
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    // 对 to.matched 数组中的每个路由调用箭头函数
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // 此处需要某个信息判断登录状态
+        if (localStorage.getItem('userInfo')) {
+            // 继续路由
+            next()
+        } else {
+            // 重定向到登录界面
+            next({
+                path: '/login',
+            })
+        }
+    } else {
+        // 继续路由
+        next()
+    }
+})
 
 export default router

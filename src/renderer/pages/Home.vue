@@ -14,6 +14,7 @@
     import Status from '../components/status/Status'
     export default {
         name: "Home",
+
         data(){
             return{
                 navList: [
