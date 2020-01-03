@@ -13,15 +13,16 @@
                 <p>账号密码登陆</p>
                 <span>短信快捷登陆</span>
             </div>
-            <input type="text" name="username">
-            <input type="password" name="passwd">
+            <div class="error-tip" v-if="isShowError">{{errorMessage}}</div>
+            <input type="text" name="username" v-model="username">
+            <input type="password" name="passwd" v-model="passwd">
             <div class="remember">
                 <label><input type="checkbox">记住密码</label>
                 <label><input type="checkbox">自动登陆</label>
                 <a href="www.baidu.com">忘记密码</a>
 
             </div>
-            <button class="login-btn">登陆</button>
+            <button class="login-btn" @click="loginSys">登陆</button>
             <div class="login-others">
                 <a href="www.baidu.com">注册账号</a>
                 <span><i class="fa fa-wechat"></i></span>
@@ -39,6 +40,10 @@
         data(){
             return{
                 logoPic:defaultImg,
+                username:'',
+                passwd:'',
+                isShowError:false,
+                errorMessage:'',
             }
         },
         methods:{
@@ -52,6 +57,16 @@
                 this.$db.findManyData(sql,(data)=>{
                     console.log(data)
                 })
+            },
+            //登陆系统
+            loginSys(){
+                if(this.username!=''&&this.passwd!=""){
+                    console.log(this.username,this.passwd)
+                    this.isShowError=false
+                }else{
+                    this.errorMessage='用户名或者密码不能为空'
+                    this.isShowError=true
+                }
             }
 
         },
@@ -116,11 +131,13 @@
         flex-direction:column;
         justify-content:flex-start;
         //align-items:center;
+        position:relative;
         .login-choose{
             display:flex;
             flex-direction:row;
             justify-content: space-between;
             align-items:center;
+            margin-bottom:5px;
             p{
                 font-size:16px;
                 color:@m_font_color;
@@ -130,6 +147,11 @@
                 color:@active_color;
                 align-self:flex-end;
             }
+        }
+        .error-tip{
+            position:absolute;
+            left:0;
+            top:25px;
         }
         input[name=username],input[name=passwd]{
             width:290px;
