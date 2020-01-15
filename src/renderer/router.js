@@ -39,7 +39,7 @@ const routes=[
             {path:'hideSpace',name:'hide-space',component:HideSpace},
             {path:'share',name:'share',component:Share}
         ],meta:{
-            requiresAuth:true
+            requiresAuth:false
         }
     },
     {
